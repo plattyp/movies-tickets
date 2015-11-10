@@ -1,0 +1,28 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+dev&test: &devtest
+  <<: *default
+  host: localhost
+  port: 5432
+
+development:
+  <<: *devtest
+  database: movietickets_development
+  username: superuser
+  password: bluejasmine
+
+test:
+  <<: *devtest
+  database: movietickets_test
+  username: superuser
+  password: bluejasmine
+
+production:
+  <<: *default
+  database: movietickets_production
+  url: <%= ENV["db_url"] %>
+  username: <%= ENV["db_username"] %>
+  password: <%= ENV["db_password"] %>
