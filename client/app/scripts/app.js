@@ -24,6 +24,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/admin', {
+        templateUrl: 'views/admin/admin.html',
+        controller: 'AdminCtrl',
+        controllerAs: 'admin'
+      })
       .when('/admin/manage_screens', {
         templateUrl: 'views/admin/manage_screens.html',
         controller: 'ManageScreensCtrl',

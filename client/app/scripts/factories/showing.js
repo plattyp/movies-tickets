@@ -8,6 +8,10 @@ function ShowingFactory($http) {
     return $http.get(urlBase);
   };
 
+  showingFactory.getFilteredShowings = function() {
+    return $http.get('api/filtered_showings');
+  };
+
   showingFactory.createShowing = function(showing) {
     return $http.post(urlBase, {"showing": showing});
   };

@@ -16,6 +16,9 @@ angular.module('clientApp')
 
     function setAdminNavigation() {
       $scope.navLinks = [{
+          title: 'admin',
+          linkText: 'Home'
+      },{
           title: 'admin/manage_screens',
           linkText: 'Manage Screens'
       }, {
