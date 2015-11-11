@@ -3,12 +3,12 @@
 angular.module('clientApp')
   .controller('ManageScreensCtrl', function ($scope, AuditoriumFactory) {
     $scope.screens = [];
-    $scope.createAuditorium;
+    $scope.createScreenObj;
     $scope.editAuditorium;
 
     // Initial Setup Of View
     getScreens();
-    resetCreateAuditorium();
+    resetCreateScreen();
 
     function getScreens() {
       AuditoriumFactory.getScreens()
@@ -21,11 +21,11 @@ angular.module('clientApp')
     };
 
     $scope.createScreen = function createScreen() {
-      AuditoriumFactory.createScreen($scope.createAuditorium)
+      AuditoriumFactory.createScreen($scope.createScreenObj)
         .success(function (screens) {
           angular.element('#auditoriumCreateModal').modal('hide');
           getScreens();
-          resetCreateAuditorium();
+          resetCreateScreen();
         })
         .error(function (error) {
           console.log(error)
@@ -58,8 +58,8 @@ angular.module('clientApp')
         });
     };
 
-    function resetCreateAuditorium() {
-      $scope.createAuditorium = {
+    function resetCreateScreen() {
+      $scope.createScreenObj = {
         name: "",
         capacity: 0
       };

@@ -1,6 +1,8 @@
+'use strict';
+
 angular
   .module('clientApp')
-  .directive('genericFormModal', function genericFormModal($timeout) {
+  .directive('genericFormModal', function genericFormModal() {
     return {
       restrict: 'E',
       transclude: true,

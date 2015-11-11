@@ -12,6 +12,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
     <!-- endbuild -->
   </head>
   <body ng-app="clientApp">
@@ -37,9 +38,10 @@
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/admin/manage_screens">Manage Screens</a></li>
+            <ul class="nav navbar-nav" ng-controller="MainCtrl">
+              <li ng-repeat="navLink in navLinks" ng-class="navClass('{{navLink.title}}')"> 
+                <a href='#/{{navLink.title}}'>{{navLink.linkText}}</a> 
+              </li>
             </ul>
           </div>
         </div>
@@ -52,7 +54,7 @@
 
     <div class="footer">
       <div class="container">
-        <p>2015 Andrew Platkin</p>
+        <p class="text-right">2015 Andrew Platkin</p>
       </div>
     </div>
 
@@ -79,6 +81,9 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
+    <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -86,8 +91,14 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/admin/manage_screens.js"></script>
+        <script src="scripts/controllers/admin/manage_movies.js"></script>
+        <script src="scripts/controllers/admin/manage_showings.js"></script>
         <script src="scripts/factories/auditorium.js"></script>
+        <script src="scripts/factories/movie.js"></script>
+        <script src="scripts/factories/rating.js"></script>
+        <script src="scripts/factories/showing.js"></script>
         <script src="scripts/directives/generic_form_modal.js"></script>
+        <script src="scripts/directives/datetime_selector.js"></script>
         <!-- endbuild -->
 </body>
 </html>

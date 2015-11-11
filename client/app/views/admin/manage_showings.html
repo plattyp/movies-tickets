@@ -1,0 +1,71 @@
+<div class="row table-header-row">
+  <div class="col-lg-12">
+    <h2 class="pull-left">Manage Showings</h2>
+    <button type="button" class="btn btn-default btn-md pull-right" data-toggle="modal" data-target="#showingCreateModal"><span class="glyphicon glyphicon-plus"></span></button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover">
+      <th>Movie</th>
+      <th>Auditorium</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th class="text-right">Actions</th>
+      <tr ng-repeat="showing in showings">
+        <td>{{showing.movie.title}}</td>
+        <td>{{showing.auditorium.name}}</td>
+        <td>{{showing.showtime | date: 'MM/dd/yyyy'}}</td>
+        <td>{{showing.showtime | date: 'h:mma'}}</td>
+        <td class="text-right">
+          <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#showingEditModal" ng-click="setShowingForEdit(showing)"><span class="glyphicon glyphicon-edit"></span></button>
+          <button type="button" class="btn btn-danger btn-sm" ng-click="deleteShowing(showing)"><span class="glyphicon glyphicon-remove"></span></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <generic-form-modal modal-id="showingCreateModal" modal-title="Create Showing" success-button-text="Create Showing" submit-method="createShowing()">
+      <div class="form-group">
+          <label>Showtime *</label>
+          <div class="input-group input-group-sm date"
+               datetimepicker-options="{{datePickerOptions}}"
+               datetimepicker
+               ng-model="createShowingObj.showtime">
+              <input type="text" class="form-control"/>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Movie * </label>
+          <select class="form-control btn btn-default dropdown-toggle" ng-options="movie.id as movie.title for movie in movies" ng-model="createShowingObj.movie_id"></select>
+      </div>
+      <div class="form-group">
+          <label>Screen * </label>
+          <select class="form-control btn btn-default dropdown-toggle" ng-options="screen.id as screen.name for screen in screens" ng-model="createShowingObj.auditorium_id"></select>
+      </div>
+  </generic-form-modal>
+  <generic-form-modal modal-id="showingEditModal" modal-title="Edit Showing" success-button-text="Edit Showing" submit-method="updateShowing()">
+      <div class="form-group">
+          <label>Showtime *</label>
+          <div class="input-group input-group-sm date"
+               datetimepicker-options="{{datePickerOptions}}"
+               datetimepicker
+               ng-model="editShowingObj.showtime">
+              <input type="text" class="form-control"/>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Movie * </label>
+          <select class="form-control btn btn-default dropdown-toggle" ng-options="movie.id as movie.title for movie in movies" ng-model="editShowingObj.movie_id"></select>
+      </div>
+      <div class="form-group">
+          <label>Screen * </label>
+          <select class="form-control btn btn-default dropdown-toggle" ng-options="screen.id as screen.name for screen in screens" ng-model="editShowingObj.auditorium_id"></select>
+      </div>
+  </generic-form-modal>
+</div>

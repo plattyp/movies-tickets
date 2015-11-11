@@ -1,4 +1,4 @@
-class AuditoriaController < ApplicationController
+class Api::AuditoriaController < ApplicationController
   def index
     @auditoria = Auditorium.order(:name)
     respond_to do |format|
