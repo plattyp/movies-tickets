@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clientApp')
-  .controller('ManageShowingsCtrl', function ($scope, ShowingFactory, MovieFactory, AuditoriumFactory) {
+  .controller('ManageShowingsCtrl', function ($scope, ShowingFactory, MovieFactory, AuditoriumFactory, moment) {
     $scope.showings = [];
     $scope.movies = [];
     $scope.screens = [];
@@ -48,21 +48,32 @@ angular.module('clientApp')
     };
 
     $scope.createShowing = function createShowing() {
-      ShowingFactory.createShowing($scope.createShowingObj)
-        .success(function (showing) {
-          angular.element('#showingCreateModal').modal('hide');
-          getShowings();
-          resetCreateShowingObj();
-        })
-        .error(function (error) {
-          console.log(error)
-        });
+      var showing = $scope.createShowingObj;
+      var withoutTz = moment(showing.showTime).format('YYYY-MM-DD hh:mm');
+      console.log(withoutTz);
+      var withUTCTz = moment.utc(withoutTz).format();
+      console.log($scope.createShowingObj.showtime);
+      console.log(withUTCTz);
+      // ShowingFactory.createShowing(showing)
+      //   .success(function (showing) {
+      //     angular.element('#showingCreateModal').modal('hide');
+      //     getShowings();
+      //     resetCreateShowingObj();
+      //   })
+      //   .error(function (error) {
+      //     console.log(error)
+      //   });
     };
 
     $scope.setShowingForEdit = function(showing) {
-      // Parse Date
-      showing.showtime = new Date();
-      $scope.editShowingObj = showing;
+      // Create Showing For Editing
+      var editableShowing = {
+        id: showing.id,
+        showtime: moment(showing.showtime),
+        movie_id: showing.movie_id,
+        auditorium_id: showing.auditorium_id
+      }
+      $scope.editShowingObj = editableShowing;
     };
 
     $scope.updateShowing = function updateShowing() {

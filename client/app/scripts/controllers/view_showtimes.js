@@ -19,4 +19,15 @@ angular.module('clientApp')
           console.log(error);
         });
     };
+
+    // Watch for changes on dateSelected so that it will update the date of dateShown on change
+    $scope.$watch(
+      function watchDateSelected( scope ) {
+          return( $scope.dateSelected );
+      },
+      function handleDateSelectedChange( newValue, oldValue ) {
+          $scope.dateShown = moment($scope.dateSelected).format('YYYY-MM-DD');
+          getShowings();
+      }
+    );
   });

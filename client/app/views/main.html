@@ -1,7 +1,7 @@
 <div ng-controller="ViewShowtimesCtrl">
   <div class="row marketing">
     <div class="col-lg-10">
-      <h4>Showings for {{dateShown | date: 'EEEE, M/d/yyyy'}}</h4>
+      <p class="top-header">Showings for {{dateShown | date: 'EEEE, M/d/yyyy'}}</p>
       <p>
         All showtimes are displayed below. If a showtime is sold out, it will be disabled.
       </p>
@@ -36,6 +36,13 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-hide="movies.length > 0">
+    <div class="col-lg-12">
+      <div class="well floating-well">
+        <p class="text-center">There are currently no available showings on the day selected</p>
       </div>
     </div>
   </div>

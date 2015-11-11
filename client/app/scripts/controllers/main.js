@@ -37,6 +37,16 @@ angular.module('clientApp')
       }];
     }
 
+    // Watch for page changes to determine navigation tabs to show
+    $scope.$watch(
+      function watchPageChange( scope ) {
+          return( $location.path() );
+      },
+      function handleNavigation( newValue, oldValue ) {
+          setLinksBasedOnRoute();
+      }
+    );
+
     $scope.navClass = function (page) {
       var currentRoute = $location.path().substring(1) || 'home';
       return page === currentRoute ? 'active' : '';

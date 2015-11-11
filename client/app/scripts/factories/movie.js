@@ -8,8 +8,8 @@ function MovieFactory($http) {
     return $http.get(urlBase);
   };
 
-  movieFactory.getMoviesWithShowings = function() {
-    return $http.get('api/showings_by_day');
+  movieFactory.getMoviesWithShowings = function(date) {
+    return $http.get('api/showings_by_day?date=' + date);
   };
 
   movieFactory.createMovie = function(movie) {
