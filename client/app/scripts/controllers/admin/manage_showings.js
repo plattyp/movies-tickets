@@ -61,7 +61,7 @@ angular.module('clientApp')
 
     $scope.setShowingForEdit = function(showing) {
       // Parse Date
-      showing.showtime = momemt(showing.showtime);
+      showing.showtime = new Date();
       $scope.editShowingObj = showing;
     };
 
