@@ -65,6 +65,18 @@ angular.module('clientApp')
       $scope.editShowingObj = showing;
     };
 
+    $scope.updateShowing = function updateShowing() {
+      var showing = $scope.editShowingObj;
+      ShowingFactory.updateShowing(showing.id, showing)
+        .success(function (showing) {
+          angular.element('#showingEditModal').modal('hide');
+          getShowings();
+        })
+        .error(function (error) {
+          console.log(error)
+        });
+    };
+
     $scope.deleteShowing = function deleteShowing(showing) {
       ShowingFactory.deleteShowing(showing.id)
         .success(function (showing) {

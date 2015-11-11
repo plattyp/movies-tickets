@@ -1,15 +1,17 @@
 'use strict';
 
 angular.module('clientApp')
-  .controller('ViewShowtimesCtrl', function ($scope, MovieFactory) {
+  .controller('ViewShowtimesCtrl', function ($scope, MovieFactory, moment) {
     $scope.movies = [];
-    $scope.showtimes = ["1:30PM","2:45PM","5:15PM","6:25PM","7:00PM","7:35PM"];
 
-    // Get Data For View
+    // Setup View
+    $scope.dateSelected = moment(new Date()).format('YYYY-MM-DD');
+    $scope.dateShown = moment($scope.dateSelected).format('YYYY-MM-DD');
+    $scope.datePickerOptions = '{format:"YYYY-MM-DD"}'
     getShowings();
 
     function getShowings() {
-      MovieFactory.getMoviesWithShowings()
+      MovieFactory.getMoviesWithShowings($scope.dateShown)
         .success(function (movies) {
           $scope.movies = movies;
         })

@@ -41,7 +41,10 @@ class Api::MoviesController < ApplicationController
   end
 
   def showings_by_day
-    @movies = Movie.with_showings_and_ratings
+    # If no date is passed, use today as a default
+    date_param = params[:date] ? Date.strptime(params[:date], '%Y-%m-%d') : nil
+    date_filter = date_param || Date.today
+    @movies = Movie.with_showings_and_ratings(date_filter)
     respond_to do |format|
       format.json { render json: @movies.to_json(:include => {:showings => { :except => [:created_at, :updated_at]}, :rating => { :except => [:created_at, :updated_at]}}), status: 200 }
     end
