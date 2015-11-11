@@ -50,3 +50,10 @@ group :development do
   gem 'spring'
 end
 
+gem 'foreman'
+gem 'puma'
+
+# For Heroku
+gem 'rails_12factor', group: :production
+
+ruby "2.2.1"
