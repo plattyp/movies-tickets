@@ -5,6 +5,7 @@ angular.module('clientApp')
     $scope.showing;
     $scope.order;
     $scope.formErrors;
+    $scope.ageVerificationRequired = false;
 
     // Render Showing Information
     $scope.datePickerOptions = '{format:"MM-YYYY",viewMode:"months"}'
@@ -15,10 +16,15 @@ angular.module('clientApp')
       ShowingFactory.getShowing($routeParams.showing_id)
         .success(function (showing) {
           $scope.showing = showing;
+          $scope.ageVerificationRequired = showing.movie.rating.agerequirement;
         })
         .error(function (error) {
           console.log(error)
         });
+    }
+
+    $scope.ageVerification = function() {
+      $scope.ageVerificationRequired = false;
     }
 
     $scope.submitOrder = function() {
