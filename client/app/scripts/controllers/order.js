@@ -5,7 +5,9 @@ angular.module('clientApp')
     $scope.showing;
     $scope.order;
     $scope.formErrors;
+    $scope.showForm = true;
     $scope.ageVerificationRequired = false;
+    $scope.confirmed = false;
 
     // Render Showing Information
     $scope.datePickerOptions = '{format:"MM-YYYY",viewMode:"months"}'
@@ -17,6 +19,9 @@ angular.module('clientApp')
         .success(function (showing) {
           $scope.showing = showing;
           $scope.ageVerificationRequired = showing.movie.rating.agerequirement;
+          if ($scope.ageVerificationRequired) {
+            $scope.showForm = false;
+          }
         })
         .error(function (error) {
           console.log(error)
@@ -25,6 +30,7 @@ angular.module('clientApp')
 
     $scope.ageVerification = function() {
       $scope.ageVerificationRequired = false;
+      $scope.showForm = true;
     }
 
     $scope.submitOrder = function() {
@@ -33,6 +39,8 @@ angular.module('clientApp')
       OrderFactory.createOrder($scope.order)
         .success(function (order) {
           $scope.order = order;
+          $scope.confirmed = true;
+          $scope.showForm = false;
         })
         .error(function (errors) {
           var messages = [];
