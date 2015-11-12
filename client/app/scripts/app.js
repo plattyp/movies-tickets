@@ -25,6 +25,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+      .when('/order/:showing_id', {
+        templateUrl: 'views/order.html',
+        controller: 'OrderCtrl',
+        controllerAs: 'order'
+      })
       .when('/admin', {
         templateUrl: 'views/admin/admin.html',
         controller: 'AdminCtrl',

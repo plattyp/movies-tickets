@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('clientApp')
-  .controller('ViewShowtimesCtrl', function ($scope, MovieFactory, moment) {
+  .controller('ViewShowtimesCtrl', function ($scope, MovieFactory, moment, $location) {
     $scope.movies = [];
 
     // Setup View
@@ -19,6 +19,10 @@ angular.module('clientApp')
           console.log(error);
         });
     };
+
+    $scope.orderShowing = function(showingId) {
+      $location.path('/order/' + showingId);
+    }
 
     // Watch for changes on dateSelected so that it will update the date of dateShown on change
     $scope.$watch(

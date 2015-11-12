@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-7">
               <div class="well">
-                <button ng-repeat="showing in movie.showings" type="button" class="btn btn-default btn-md showtime-button">{{showing.showtime | date: 'h:mma'}}</button>
+                <button ng-repeat="showing in movie.showings" type="button" class="btn btn-default btn-md showtime-button" ng-click="orderShowing(showing.id)">{{showing.showtime | date: 'h:mma'}}</button>
               </div>
               <h4>Rated {{movie.rating.name}}</h4>
             </div>

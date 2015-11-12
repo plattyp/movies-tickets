@@ -6,6 +6,17 @@ class Api::ShowingsController < ApplicationController
     end
   end
 
+  def show
+    @showing = Showing.find(params[:id])
+    respond_to do |format|
+      if @showing
+        format.json { render json: @showing.to_json(:include => { :movie => {:include => :rating}, :auditorium => { :except => [:created_at, :updated_at]}}), status: 200 }
+      else
+        format.json { render json: @showing.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   def create
     @showing = Showing.create(showing_params)
     respond_to do |format|

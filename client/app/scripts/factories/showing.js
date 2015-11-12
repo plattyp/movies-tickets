@@ -8,6 +8,10 @@ function ShowingFactory($http) {
     return $http.get(urlBase);
   };
 
+  showingFactory.getShowing = function(id) {
+    return $http.get(urlBase + '/' + id);
+  };
+
   showingFactory.getFilteredShowings = function(date) {
     return $http.get('api/filtered_showings?date=' + date);
   };
