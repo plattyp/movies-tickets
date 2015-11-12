@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-lg-10">
+    <p class="table-header pull-left">Orders</p>
+  </div>
+  <div class="col-lg-2">
+    <select displaytext="Movie" class="form-control btn btn-default dropdown-toggle" ng-options="movie.id as movie.title for movie in movies" ng-model="selectedMovieId" ng-change="getOrders()"></select>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover">
+      <th>Order No</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Quantity</th>
+      <th>Movie</th>
+      <th>Screen</th>
+      <th>Date</th>
+      <th>Time</th>
+      <tr ng-repeat="order in orders">
+        <td>{{order.id}}</td>
+        <td>{{order.name}}</td>
+        <td>{{order.email}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.showing.movie.title}}</td>
+        <td>{{order.showing.auditorium.name}}</td>
+        <td>{{order.showing.showtime | date: 'MM/dd/yyyy'}}</td>
+        <td>{{order.showing.showtime | date: 'h:mma'}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

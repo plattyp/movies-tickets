@@ -4,7 +4,7 @@ class Showing < ActiveRecord::Base
   has_many :orders
 
   def tickets_available
-  	tickets_remaining > 0
+  	tickets_remaining > 0 && showtime > Date.current()
   end
 
   def tickets_remaining

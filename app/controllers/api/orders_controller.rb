@@ -1,6 +1,9 @@
 class Api::OrdersController < ApplicationController
+
   def index
-    @orders = Order.order(:created_at)
+    search_params = {}
+    search_params[:movie_id] = params[:movie_id]
+    @orders = Order.all_filtered(search_params)
     respond_to do |format|
       format.json { render json: @orders.to_json(:include => {:showing => {:include => [:movie,:auditorium]}}), status: 200 }
     end
@@ -12,7 +15,7 @@ class Api::OrdersController < ApplicationController
       if @order.save
 
         # Send Out Confirmation Email (Will need to be moved to a Queue if not yet)
-        ConfirmationMailer.order_confirmation_email(@order).deliver
+        #ConfirmationMailer.order_confirmation_email(@order).deliver
 
         format.json { render json: @order.to_json, status: 200 }
       else
