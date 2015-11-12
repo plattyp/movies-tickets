@@ -46,7 +46,7 @@ class Api::MoviesController < ApplicationController
     date_filter = date_param || Date.today
     @movies = Movie.with_showings_and_ratings(date_filter)
     respond_to do |format|
-      format.json { render json: @movies.to_json(:include => {:showings => { :except => [:created_at, :updated_at]}, :rating => { :except => [:created_at, :updated_at]}}), status: 200 }
+      format.json { render json: @movies.to_json(:include => {:showings => { :except => [:created_at, :updated_at], :methods => [:tickets_available]}, :rating => { :except => [:created_at, :updated_at]}}), status: 200 }
     end
   end
 
