@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p><%= @order.name %>,</p>
+    <p>
+      We are sending this email to confirm that you have purchased <strong><%= @order.quantity %></strong> ticket(s) for <strong><%= @movie.title %></strong> on <strong><%= @showing.showtime.strftime("%A, %v") %> at <%= @showing.showtime.strftime("%r %Z") %></strong>.
+    </p>
+    <p>
+      When arriving at the theater, please navigate to auditorium: <strong><%= @auditorium.name %></strong>
+    </p>
+    <p>
+      For reference, your order confirmation number is: <strong><%= @order.id %></strong>
+    </p>
+    <p>
+      Thanks and enjoy the show!
+    </p>
+  </body>
+</html>

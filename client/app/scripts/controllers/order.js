@@ -31,8 +31,7 @@ angular.module('clientApp')
         .error(function (errors) {
           var messages = [];
           for (var i in errors) {
-            var error = i + ' ' + errors[i];
-            messages.push(error);
+            messages.push(errors[i][0]);
           }
           $scope.formErrors = messages;
         });

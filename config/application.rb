@@ -21,6 +21,9 @@ module Movietickets
         g.fixture_replacement :factory_girl, :dir => "spec/factories" 
     end
 
+    # Set Default Time Zone
+    config.time_zone = 'Central Time (US & Canada)'
+
     config.assets.paths << "#{Rails.root}/client/bower_components"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

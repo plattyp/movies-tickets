@@ -36,6 +36,19 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  config.action_mailer.delivery_method = :smtp
+
+  # SMTP settings for email
+  config.action_mailer.smtp_settings = {
+    address:              Rails.application.secrets.smtp_address,
+    port:                 587,
+    domain:               Rails.application.secrets.smtp_domain,
+    user_name:            Rails.application.secrets.smtp_username,
+    password:             Rails.application.secrets.smtp_password,
+    authentication:       'plain',
+    enable_starttls_auto: true  
+  }
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

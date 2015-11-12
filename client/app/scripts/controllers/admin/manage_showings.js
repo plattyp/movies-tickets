@@ -49,20 +49,15 @@ angular.module('clientApp')
 
     $scope.createShowing = function createShowing() {
       var showing = $scope.createShowingObj;
-      var withoutTz = moment(showing.showTime).format('YYYY-MM-DD hh:mm');
-      console.log(withoutTz);
-      var withUTCTz = moment.utc(withoutTz).format();
-      console.log($scope.createShowingObj.showtime);
-      console.log(withUTCTz);
-      // ShowingFactory.createShowing(showing)
-      //   .success(function (showing) {
-      //     angular.element('#showingCreateModal').modal('hide');
-      //     getShowings();
-      //     resetCreateShowingObj();
-      //   })
-      //   .error(function (error) {
-      //     console.log(error)
-      //   });
+      ShowingFactory.createShowing(showing)
+        .success(function (showing) {
+          angular.element('#showingCreateModal').modal('hide');
+          getShowings();
+          resetCreateShowingObj();
+        })
+        .error(function (error) {
+          console.log(error)
+        });
     };
 
     $scope.setShowingForEdit = function(showing) {
