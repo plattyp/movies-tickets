@@ -49,6 +49,12 @@ angular.module('clientApp')
 
     $scope.createShowing = function createShowing() {
       var showing = $scope.createShowingObj;
+      var newDate = new Date()
+
+      // Offset the time to the seconds of the browser
+      var offsetSeconds = newDate.getTimezoneOffset() * 60;
+      showing.showtime = moment(showing.showtime.format()).utc().add(offsetSeconds,'seconds').format()
+
       ShowingFactory.createShowing(showing)
         .success(function (showing) {
           angular.element('#showingCreateModal').modal('hide');
