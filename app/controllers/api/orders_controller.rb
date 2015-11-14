@@ -14,8 +14,8 @@ class Api::OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
 
-        # Send Out Confirmation Email (Will need to be moved to a Queue if not yet)
-        #ConfirmationMailer.order_confirmation_email(@order).deliver
+        # Send Out Confirmation Email
+        Resque.enqueue(EmailService, @order.id)
 
         format.json { render json: @order.to_json, status: 200 }
       else
