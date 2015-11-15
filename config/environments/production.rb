@@ -81,11 +81,11 @@ Rails.application.configure do
 
   # SMTP settings for email
   config.action_mailer.smtp_settings = {
-    address:              Rails.application.secrets.smtp_address,
+    address:              ENV["smtp_address"],
     port:                 587,
-    domain:               Rails.application.secrets.smtp_domain,
-    user_name:            Rails.application.secrets.smtp_username,
-    password:             Rails.application.secrets.smtp_password,
+    domain:               ENV["smtp_domain"],
+    user_name:            ENV["smtp_username"],
+    password:             ENV["smtp_password"],
     authentication:       'plain',
     enable_starttls_auto: true  
   }

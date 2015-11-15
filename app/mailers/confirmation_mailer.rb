@@ -1,5 +1,5 @@
 class ConfirmationMailer < ApplicationMailer
-  default from: Rails.application.secrets.smtp_default_email
+  default from: ENV["smtp_default_email"]
 
   def order_confirmation_email(order)
     @order = order

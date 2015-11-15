@@ -13,7 +13,7 @@
 /tmp
 
 # Ignore Secrets File
-/config/secrets.yml
+/config/environment_variable_config.yml
 
 # All Other Unneeded Files
 dump.rdb
