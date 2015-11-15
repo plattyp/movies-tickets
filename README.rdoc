@@ -1,4 +1,3 @@
-=begin rdoc
 == README
 
 Once you gain the repository locally, run the following commands on console:
@@ -16,4 +15,3 @@ Ensure you create a environment_variable_config.yml file in your config director
   smtp_username: 
   smtp_password: 
   smtp_default_email: 
-=end
