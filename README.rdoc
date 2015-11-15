@@ -9,12 +9,11 @@ Once you gain the repository locally, run the following commands on console:
 *rake db:seed
 
 === Secret Setup
-Ensure you create a secrets.yml file in your config directory. It will need to consist of the following keys:
-  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
-  smtp_address: <%= ENV["SMTP_ADDRESS"] %>
-  smtp_domain: <%= ENV["SMTP_DOMAIN"] %>
-  smtp_username: <%= ENV["SMTP_USERNAME"] %>
-  smtp_password: <%= ENV["SMTP_PASSWORD"] %>
-  smtp_default_email: <%= ENV["SMTP_DEFAULT_EMAIL"] %>
-  
+Ensure you create a environment_variable_config.yml file in your config directory. It will need to consist of the following keys:
+  secret_key_base: 
+  smtp_address: 
+  smtp_domain: 
+  smtp_username: 
+  smtp_password: 
+  smtp_default_email: 
 =end
