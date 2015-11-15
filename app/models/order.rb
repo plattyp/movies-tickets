@@ -3,10 +3,11 @@ class Order < ActiveRecord::Base
 
   #Validations
   validates :name, presence: { message: "Name is required" }
-  validates :creditcardnum, presence: { message: "Credit Card Number is required" }
-  validates_length_of :creditcardnum, :minimum => 16, :maximum => 16, message: "Credit Card Number is invalid"
+  validates :creditcardnum, presence: { message: "Credit Card number is required" }
+  validates_length_of :creditcardnum, :minimum => 16, :maximum => 16, message: "Credit Card number is invalid"
   validates :expirationdate, presence: { message: "Expiration date is required" }
-  validates :quantity, presence: { message: "Quantity is required" }, numericality: { only_integer: true, greater_than: 0 }
+  validates :quantity, presence: { message: "Quantity is required" }, numericality: { only_integer: true, greater_than: 0, message: "Quantity must be greater than 0" }
+  validates :email, presence: { message: "Email is required" }
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :message => "Email is invalid"
   validate :quantity_cannot_be_greater_than_tickets_available, on: :create
   validate :created_date_must_be_before_showtime, on: :create
