@@ -13,7 +13,6 @@ angular.module('clientApp')
     function getShowings() {
       MovieFactory.getMoviesWithShowings($scope.dateShown)
         .success(function (movies) {
-          console.log(movies);
           $scope.movies = movies;
         })
         .error(function (error) {
