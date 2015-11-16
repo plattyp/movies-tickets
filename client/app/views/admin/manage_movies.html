@@ -7,12 +7,12 @@
 <div class="row">
   <div class="col-lg-12">
     <table class="table table-hover">
-      <th>Banner</th>
-      <th>Movie Title</th>
-      <th>Rating</th>
-      <th class="text-right">Actions</th>
+      <th class="col-md-4">Banner</th>
+      <th class="col-md-4">Movie Title</th>
+      <th class="col-md-2">Rating</th>
+      <th class="text-right col-md-2">Actions</th>
       <tr ng-repeat="movie in movies">
-        <td>{{movie.bannerimageurl}}</td>
+        <td><img class="img-responsive thumbnail" ng-src="{{movie.bannerimageurl}}"></td>
         <td>{{movie.title}}</td>
         <td>{{movie.rating.name}}</td>
         <td class="text-right">
