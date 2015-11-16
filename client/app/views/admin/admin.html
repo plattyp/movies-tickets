@@ -3,7 +3,9 @@
     <p class="table-header pull-left">Orders</p>
   </div>
   <div class="col-lg-2">
-    <select displaytext="Movie" class="form-control btn btn-default dropdown-toggle" ng-options="movie.id as movie.title for movie in movies" ng-model="selectedMovieId" ng-change="getOrders()"></select>
+    <select displaytext="Movie" class="form-control btn btn-default dropdown-toggle" ng-options="movie.id as movie.title for movie in movies" ng-model="selectedMovieId" ng-change="getOrders()">
+      <option value="">All Movies</option>
+    </select>
   </div>
 </div>
 <div class="row">

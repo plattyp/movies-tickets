@@ -32,6 +32,6 @@ class Order < ActiveRecord::Base
     movie_id = args[:movie_id]
     self.joins(:showing)
         .where("? IS NULL OR showings.movie_id = ?",movie_id, movie_id)
-        .order(:created_at)
+        .order(created_at: :desc)
   end
 end
