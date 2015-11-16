@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :showing do
-    showtime "2015-11-10 21:46:50"
-movie_id 1
-auditorium_id 1
+    showtime 10.days.from_now
+    association :movie, factory: :movie
+    association :auditorium, factory: :auditorium
   end
 
 end

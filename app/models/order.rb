@@ -1,10 +1,10 @@
 class Order < ActiveRecord::Base
   belongs_to :showing
 
-  #Validations
+  # Validations
   validates :name, presence: { message: "Name is required" }
   validates :creditcardnum, presence: { message: "Credit Card number is required" }
-  validates_length_of :creditcardnum, :minimum => 16, :maximum => 16, message: "Credit Card number is invalid"
+  validates_length_of :creditcardnum, :minimum => 14, :maximum => 16, message: "Credit Card number is invalid"
   validates :expirationdate, presence: { message: "Expiration date is required" }
   validates :quantity, presence: { message: "Quantity is required" }, numericality: { only_integer: true, greater_than: 0, message: "Quantity must be greater than 0" }
   validates :email, presence: { message: "Email is required" }

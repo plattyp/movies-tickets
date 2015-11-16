@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :auditorium do
     name "MyString"
-    capacity 1
+    capacity 100
   end
 end

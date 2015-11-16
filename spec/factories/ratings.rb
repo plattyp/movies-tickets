@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :rating do
     name "MyString"
-agerequirement false
+    agerequirement false
   end
 
 end
