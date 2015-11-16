@@ -1,6 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe Showing, type: :model do
+  describe '#showtime' do
+    it 'will prevent creation of showing if showtime is blank' do
+      showing = build(:showing)
+      showing.showtime = nil
+      expect(showing.save).to eq false
+    end
+    it 'will prevent creation of showing if showtime is not a date' do
+      showing = build(:showing)
+      showing.showtime = "A/B/C"
+      expect(showing.save).to eq false
+    end
+    it 'allows creation of showing if showtime is a datetime' do
+      showing = build(:showing)
+      showing.showtime = Date.today
+      expect(showing.save).to eq true
+    end
+  end
+
   describe '#tickets_available' do
     it 'returns false if the remaining tickets for the showtime is 0' do
       order = create(:order, :with_all_needed_associations)

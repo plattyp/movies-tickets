@@ -7,6 +7,7 @@ angular.module('clientApp')
     $scope.screens = [];
     $scope.createShowingObj;
     $scope.editShowingObj;
+    $scope.formErrors = [];
 
     // Initial Setup Of View
     getShowings();
@@ -48,21 +49,31 @@ angular.module('clientApp')
     };
 
     $scope.createShowing = function createShowing() {
-      var showing = $scope.createShowingObj;
-      var newDate = new Date()
+      var showing = {
+        showtime: $scope.createShowingObj.showtime,
+        movie_id: $scope.createShowingObj.movie_id,
+        auditorium_id: $scope.createShowingObj.auditorium_id
+      }
 
       // Offset the time to the seconds of the browser
-      var offsetSeconds = newDate.getTimezoneOffset() * 60;
-      showing.showtime = moment(showing.showtime.format()).utc().add(offsetSeconds,'seconds').format()
+      if (showing.showtime) {
+        var newDate = new Date()
+        var offsetSeconds = newDate.getTimezoneOffset() * 60;
+        showing.showtime = moment(showing.showtime.format()).utc().add(offsetSeconds,'seconds').format()
+      }
 
       ShowingFactory.createShowing(showing)
         .success(function (showing) {
           angular.element('#showingCreateModal').modal('hide');
           getShowings();
-          resetCreateShowingObj();
+          resetForm();
         })
-        .error(function (error) {
-          console.log(error)
+        .error(function (errors) {
+          var messages = [];
+          for (var i in errors) {
+            messages.push(errors[i][0]);
+          }
+          $scope.formErrors = messages;
         });
     };
 
@@ -75,6 +86,9 @@ angular.module('clientApp')
         auditorium_id: showing.auditorium_id
       }
       $scope.editShowingObj = editableShowing;
+
+      // Reset form for errors
+      $scope.formErrors = [];
     };
 
     $scope.updateShowing = function updateShowing() {
@@ -84,8 +98,12 @@ angular.module('clientApp')
           angular.element('#showingEditModal').modal('hide');
           getShowings();
         })
-        .error(function (error) {
-          console.log(error)
+        .error(function (errors) {
+          var messages = [];
+          for (var i in errors) {
+            messages.push(errors[i][0]);
+          }
+          $scope.formErrors = messages;
         });
     };
 
@@ -98,6 +116,11 @@ angular.module('clientApp')
           console.log(error)
         });
     };
+
+    $scope.resetForm = function() {
+      resetCreateShowingObj();
+      $scope.formErrors = [];
+    }
 
     function resetCreateShowingObj() {
       $scope.createShowingObj = {

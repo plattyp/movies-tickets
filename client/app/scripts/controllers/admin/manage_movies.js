@@ -6,6 +6,7 @@ angular.module('clientApp')
     $scope.ratings = [];
     $scope.createMovieObj;
     $scope.editMovieObj;
+    $scope.formErrors = [];
 
     getMovies();
     getRatings();
@@ -36,15 +37,20 @@ angular.module('clientApp')
         .success(function (screens) {
           angular.element('#movieCreateModal').modal('hide');
           getMovies();
-          resetCreateMovie();
+          resetForm();
         })
-        .error(function (error) {
-          console.log(error)
+        .error(function (errors) {
+          var messages = [];
+          for (var i in errors) {
+            messages.push(errors[i][0]);
+          }
+          $scope.formErrors = messages;
         });
     };
 
     $scope.setMovieForEdit = function(movie) {
       $scope.editMovieObj = movie;
+      $scope.formErrors = [];
     };
 
     $scope.updateMovie = function updateMovie() {
@@ -54,8 +60,12 @@ angular.module('clientApp')
           angular.element('#movieEditModal').modal('hide');
           getMovies();
         })
-        .error(function (error) {
-          console.log(error)
+        .error(function (errors) {
+          var messages = [];
+          for (var i in errors) {
+            messages.push(errors[i][0]);
+          }
+          $scope.formErrors = messages;
         });
     };
 
@@ -68,6 +78,11 @@ angular.module('clientApp')
           console.log(error)
         });
     };
+
+    $scope.resetForm = function() {
+      resetCreateMovie();
+      $scope.formErrors = [];
+    }
 
     function resetCreateMovie() {
       $scope.createMovieObj = {

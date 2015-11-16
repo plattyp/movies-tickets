@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <p class="table-header pull-left">Manage Movies</p>
-    <button type="button" class="btn btn-default btn-md pull-right" data-toggle="modal" data-target="#movieCreateModal"><span class="glyphicon glyphicon-plus"></span></button>
+    <button type="button" class="btn btn-default btn-md pull-right" data-toggle="modal" data-target="#movieCreateModal" ng-click="resetForm()"><span class="glyphicon glyphicon-plus"></span></button>
   </div>
 </div>
 <div class="row">
@@ -23,6 +23,9 @@
     </table>
   </div>
   <generic-form-modal modal-id="movieCreateModal" modal-title="Create Movie" success-button-text="Create Movie" submit-method="createMovie()">
+      <div class="alert alert-danger" role="alert" ng-show="formErrors.length > 0">
+        <p ng-repeat="error in formErrors">{{error}}</p>
+      </div>
       <div class="form-group">
           <label>Title *</label>
           <input id="movieTitle" name="title" type="text" ng-model="createMovieObj.title" class="form-control required">
@@ -37,6 +40,9 @@
       </div>
   </generic-form-modal>
   <generic-form-modal modal-id="movieEditModal" modal-title="Edit Movie" success-button-text="Edit Movie" submit-method="updateMovie()">
+      <div class="alert alert-danger" role="alert" ng-show="formErrors.length > 0">
+        <p ng-repeat="error in formErrors">{{error}}</p>
+      </div>
       <div class="form-group">
           <label>Title *</label>
           <input id="movieTitle" name="title" type="text" ng-model="editMovieObj.title" class="form-control required">
