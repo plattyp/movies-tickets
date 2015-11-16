@@ -1,5 +1,5 @@
 class ConfirmationMailer < ApplicationMailer
-  default from: ENV["smtp_default_email"]
+  default from: ENV["smtp_default_email"] || "andrew.platkin@gmail.com"
 
   def order_confirmation_email(order)
     @order = order
