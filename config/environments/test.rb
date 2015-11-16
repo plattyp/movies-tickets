@@ -44,11 +44,11 @@ Rails.application.configure do
 
   # SMTP settings for email
   config.action_mailer.smtp_settings = {
-    address:              ENV["smtp_address"],
+    address:              ENV["SMTP_ADDRESS"],
     port:                 587,
-    domain:               ENV["smtp_domain"],
-    user_name:            ENV["smtp_username"],
-    password:             ENV["smtp_password"],
+    domain:               ENV["SMTP_DOMAIN"],
+    user_name:            ENV["SMTP_USERNAME"],
+    password:             ENV["SMTP_PASSWORD"],
     authentication:       'plain',
     enable_starttls_auto: true  
   }
