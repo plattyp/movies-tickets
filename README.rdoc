@@ -1,11 +1,15 @@
 == README
 
+=== Overview
+
+This application was made to support some basic functionality with the sell of tickets for showings for a movie theater. It consists of 5 models (Auditorium, Movie, Rating, Showing, Order). Orders are associated with a Showing and a given Showing belongs to both a Movie and Auditorium. Besides basic validation on model attributes, there is additional validation on creating orders as associated to the remaining ticket availability (i.e. Auditorium capacity for that showing - sum of quantity of orders for that showing vs the quantity of the new order trying to be created). On success of creation of an Order, an email overview is sent to the user supplied email of the order. This was setup using Resque and Redis to queue emails to be sent out on a background task to limit latency of the application.
+
 Once you gain the repository locally, run the following commands on console:
 
 === Database Setup
-*rake db:create
-*rake db:migrate
-*rake db:seed
+* rake db:create
+* rake db:migrate
+* rake db:seed
 
 === Secret Setup
 Ensure you create a environment_variable_config.yml file in your config directory. It will need to consist of the following keys:
