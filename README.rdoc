@@ -4,6 +4,15 @@
 
 This application was made to support some basic functionality for the selling of tickets for showings for a movie theater. It consists of 5 models (Auditorium, Movie, Rating, Showing, Order). Orders are associated with a Showing and a given Showing belongs to both a Movie and Auditorium. Besides basic validation on model attributes, there is additional validation on creating orders as associated to the remaining ticket availability (i.e. Auditorium capacity for that showing - sum of quantity of orders for that showing vs the quantity of the new order trying to be created). On success of creation of an Order, an email overview is sent to the user supplied email of the order. This was setup using Resque and Redis to queue emails to be sent out on a background task to limit latency of the application.
 
+The site was made using Ruby on Rails as a backend and AngularJS as the frontend. 
+
+Enhancements can include:
+* Handling cascading deletes or an alternative as they affect their associations (e.g. Removing a showing or movie and its affect on Orders made)
+* Pagination on admin screens
+* Easier ways to schedule times for multiple days (e.g. Leveraging film duration to auto schedule within the available auditoriums)
+* Payment processor for orders
+* Reminder emails for showings
+
 Once you gain the repository locally, run the following commands on console:
 
 === Database Setup
@@ -21,4 +30,4 @@ Ensure you create a environment_variable_config.yml file in your config director
   smtp_default_email: 
 
 === Redis Server
-For developing locally, ensure that you have Redis server running for the email email queue
+For developing locally, ensure that you have Redis server running for the email queue
