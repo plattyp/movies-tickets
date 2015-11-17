@@ -19,3 +19,6 @@ Ensure you create a environment_variable_config.yml file in your config director
   smtp_username: 
   smtp_password: 
   smtp_default_email: 
+
+=== Redis Server
+For developing locally, ensure that you have Redis server running for the email email queue

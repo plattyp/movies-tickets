@@ -34,6 +34,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
+  gem 'resque_spec'
 end
 
 group :development do

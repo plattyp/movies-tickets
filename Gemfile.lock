@@ -126,6 +126,11 @@ GEM
       redis-namespace (~> 1.0)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
+    resque_spec (0.17.0)
+      resque (>= 1.19.0)
+      rspec-core (>= 3.0.0)
+      rspec-expectations (>= 3.0.0)
+      rspec-mocks (>= 3.0.0)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -200,6 +205,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails_12factor
   resque (~> 1.22.0)
+  resque_spec
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

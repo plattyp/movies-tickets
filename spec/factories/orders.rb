@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :order do
     name "MyString"
-    email "email@test.com"
+    email "aplatkin@hotmail.com"
     creditcardnum "1234123412341234"
     expirationdate "12-2015"
     quantity 1
