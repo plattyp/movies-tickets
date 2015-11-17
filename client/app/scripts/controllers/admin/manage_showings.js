@@ -7,6 +7,7 @@ angular.module('clientApp')
     $scope.screens = [];
     $scope.createShowingObj;
     $scope.editShowingObj;
+    $scope.showingForDeletion;
     $scope.formErrors = [];
 
     // Initial Setup Of View
@@ -77,7 +78,7 @@ angular.module('clientApp')
         });
     };
 
-    $scope.setShowingForEdit = function(showing) {
+    $scope.setShowingForEditAndShowEditModal = function(showing) {
       // Create Showing For Editing
       var editableShowing = {
         id: showing.id,
@@ -89,6 +90,8 @@ angular.module('clientApp')
 
       // Reset form for errors
       $scope.formErrors = [];
+
+      angular.element('#showingEditModal').modal('show');
     };
 
     $scope.updateShowing = function updateShowing() {
@@ -107,9 +110,16 @@ angular.module('clientApp')
         });
     };
 
-    $scope.deleteShowing = function deleteShowing(showing) {
+    $scope.promptForDeletion = function(showing) {
+      angular.element('#showingDeletionConfirmationModal').modal('show');
+      $scope.showingForDeletion = showing;
+    };
+
+    $scope.deleteShowing = function deleteShowing() {
+      var showing = $scope.showingForDeletion;
       ShowingFactory.deleteShowing(showing.id)
         .success(function (showing) {
+          angular.element('#showingDeletionConfirmationModal').modal('hide');
           getShowings();
         })
         .error(function (error) {
@@ -117,10 +127,15 @@ angular.module('clientApp')
         });
     };
 
-    $scope.resetForm = function() {
+    $scope.resetFormAndShowCreateModal = function() {
+      resetForm();
+      angular.element('#showingCreateModal').modal('show');
+    };
+
+    function resetForm() {
       resetCreateShowingObj();
       $scope.formErrors = [];
-    }
+    };
 
     function resetCreateShowingObj() {
       $scope.createShowingObj = {

@@ -5,6 +5,7 @@ angular.module('clientApp')
     $scope.screens = [];
     $scope.createScreenObj;
     $scope.editAuditorium;
+    $scope.screenForDeletion;
     $scope.formErrors = [];
 
     // Initial Setup Of View
@@ -37,9 +38,10 @@ angular.module('clientApp')
         });
     };
 
-    $scope.setScreenForEdit = function(screen) {
+    $scope.setScreenForEditAndShowEditModal = function(screen) {
       $scope.editAuditorium = screen;
       $scope.formErrors = [];
+      angular.element('#auditoriumEditModal').modal('show');
     };
 
     $scope.updateScreen = function updateScreen() {
@@ -58,9 +60,16 @@ angular.module('clientApp')
         });
     };
 
-    $scope.deleteScreen = function deleteScreen(screen) {
+    $scope.promptForDeletion = function(screen) {
+      angular.element('#screenDeletionConfirmationModal').modal('show');
+      $scope.screenForDeletion = screen;
+    };
+
+    $scope.deleteScreen = function deleteScreen() {
+      var screen = $scope.screenForDeletion;
       AuditoriumFactory.deleteScreen(screen.id)
         .success(function (screen) {
+          angular.element('#screenDeletionConfirmationModal').modal('hide');
           getScreens();
         })
         .error(function (error) {
@@ -68,10 +77,15 @@ angular.module('clientApp')
         });
     };
 
-    $scope.resetForm = function() {
+    $scope.resetFormAndShowCreateModal = function() {
+      resetForm();
+      angular.element('#auditoriumCreateModal').modal('show');
+    };
+
+    function resetForm() {
       resetCreateScreen();
       $scope.formErrors = [];
-    }
+    };
 
     function resetCreateScreen() {
       $scope.createScreenObj = {

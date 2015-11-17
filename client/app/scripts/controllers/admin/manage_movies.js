@@ -6,6 +6,7 @@ angular.module('clientApp')
     $scope.ratings = [];
     $scope.createMovieObj;
     $scope.editMovieObj;
+    $scope.movieForDeletion;
     $scope.formErrors = [];
 
     getMovies();
@@ -48,9 +49,10 @@ angular.module('clientApp')
         });
     };
 
-    $scope.setMovieForEdit = function(movie) {
+    $scope.setMovieForEditAndShowEditModal = function(movie) {
       $scope.editMovieObj = movie;
       $scope.formErrors = [];
+      angular.element('#movieEditModal').modal('show');
     };
 
     $scope.updateMovie = function updateMovie() {
@@ -69,9 +71,16 @@ angular.module('clientApp')
         });
     };
 
-    $scope.deleteMovie = function deleteMovie(movie) {
+    $scope.promptForDeletion = function(movie) {
+      angular.element('#movieDeletionConfirmationModal').modal('show');
+      $scope.movieForDeletion = movie;
+    };
+
+    $scope.deleteMovie = function deleteMovie() {
+      var movie = $scope.movieForDeletion;
       MovieFactory.deleteMovie(movie.id)
         .success(function (movie) {
+          angular.element('#movieDeletionConfirmationModal').modal('hide');
           getMovies();
         })
         .error(function (error) {
@@ -79,7 +88,12 @@ angular.module('clientApp')
         });
     };
 
-    $scope.resetForm = function() {
+    $scope.resetFormAndShowCreateModal = function() {
+      resetForm();
+      angular.element('#movieCreateModal').modal('show');
+    }
+
+    function resetForm() {
       resetCreateMovie();
       $scope.formErrors = [];
     }
